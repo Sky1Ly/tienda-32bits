@@ -10,17 +10,19 @@
           <th scope="col">Stock</th>
           <th scope="col">Price</th>
           <th scope="col">Actions</th>
+          <th scope="col">Color</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
+        <tr v-for="(producto, i) in tienda" :key="i">
+          <th scope="row">{{producto.codigo}}</th>
+          <td>{{ producto.nombre }}</td>
+          <td>{{ producto.stock }}</td>
+          <td>{{ producto.precio }}</td>
+          <td>{{ producto.color }}</td>
           <td>
-            <button type="button" class="btn btn-success me-3">+</button>
-            <button type="button" class="btn btn-danger">-</button>
+            <button @click="incrementarStock(producto)" type="button" class="btn btn-success me-3">+</button>
+            <button @click="decrementarStock(producto)" type="button" class="btn btn-danger">-</button>
           </td>
         </tr>
       </tbody>
@@ -29,8 +31,29 @@
 </template>
 
 <script>
+import { mapMutations, mapState } from 'vuex';
+
 export default {
-  name: 'HelloWorld',
+  name: 'InventarioTienda',
+  computed: {
+    ...mapState(['tienda'])
+  },
+  methods: {
+    ...mapMutations(["changeStock"]),
+
+    incrementarStock(producto){
+      this.changeStock({
+        codigo: producto.codigo, 
+        cantidad: 1
+      })
+    },
+    decrementarStock(producto){
+      this.changeStock({
+        codigo: producto.codigo,
+        cantidad: -1
+      })
+    }
+  },
   props: {
     msg: String
   }
