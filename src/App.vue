@@ -1,15 +1,15 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <img alt="Vue logo" src="https://i.pinimg.com/736x/98/58/69/98586961e330d6858bf03bebf5296c36.jpg">
+  <InventarioTienda msg="Tienda 32 Bits" />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import InventarioTienda from './components/InventarioTienda.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    InventarioTienda
   }
 }
 </script>
